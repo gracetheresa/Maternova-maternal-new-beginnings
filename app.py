@@ -507,18 +507,6 @@ with st.sidebar:
         <span style='font-size:12px; color:#374151; font-weight:500;'>Fetal (Stacking)</span>
         <span style='font-size:13px; font-weight:700; color:#16A34A;'>94.13%</span>
     </div>
-    <hr style='border:none; border-top:1px solid #FADADD; margin:14px 0 8px 0;'>
-    <div style='font-size:11px; color:#D1A8B8;text-align:center; line-height:1.6;'>
-        Developed By:<br/>
-        Archana S Shetty<br/>
-        Raksha Nandeesh<br/>
-        Bhuvana J<br/>
-        Sohan Anand<br/>
-    </div>
-    <br/>
-    <div style='font-size:11px; color:#D1A8B8; text-align:center; line-height:1.6;'>
-        JSS STU &nbsp;|&nbsp; Dept. of CS&amp;E<br>Academic Year 2025-26
-    </div>        
     """, unsafe_allow_html=True)
 
 # PAGE: ABOUT
