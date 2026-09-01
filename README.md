@@ -1,67 +1,66 @@
-# 🏥 MaternaInsight — Maternal & Fetal Health Monitoring System
+\# 🏥 MaternaInsight — Maternal & Fetal Health Monitoring System
 
-> An end-to-end Machine Learning-based clinical decision support system for maternal health risk assessment and fetal health classification, built using Python and Streamlit.
+> **MaternaInsight is an end-to-end machine learning-based clinical decision support system for assessing maternal health risks and classifying fetal health conditions. Built with Python and Streamlit, the platform combines predictive analytics, explainable AI, and an interactive dashboard to support informed healthcare decision-making.**
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://maternainsight.streamlit.app/)
-![Python](https://img.shields.io/badge/Python-3.10-blue)
+
 
 ---
 
 ## 🔗 Live Demo
-**[👉 Click here to open MaternaInsight](https://maternainsight.streamlit.app/)**
+https://maternova-maternal-new-beginnings-l45cbs7swct8rw4ktyk68c.streamlit.app/
 
 ---
 
 ## 📌 Overview
 
-MaternaInsight is a clinical decision support tool designed for healthcare professionals, nurses, and rural health workers. It provides:
+MaternaInsight is designed as a **research-oriented clinical decision support system** that assists healthcare professionals, nurses, and community health workers in evaluating maternal and fetal health conditions.
 
-- **Maternal Health Risk Prediction** — classifies pregnancy risk as Low, Mid, or High using 6 clinical parameters
-- **Fetal Health Classification** — classifies fetal condition as Normal, Suspect, or Pathological using 21 CTG measurements
-- **SHAP Explainability** — explains every prediction with feature contribution charts
-- **System Performance Dashboard** — clinical reference guide and model evaluation metrics
+The system provides:
 
----
-
-## 🧠 Models
-
-| Model | Algorithm | Accuracy | Macro F1 |
-|-------|-----------|----------|----------|
-| Maternal Health Risk | LightGBM + Optuna | 90.64% | 91.04% |
-| Fetal Health Classification | Stacking Ensemble | 94.13% | 88.66% |
+* **Maternal Health Risk Assessment** — Predicts pregnancy risk as **Low, Mid, or High** based on six key clinical parameters.
+* **Fetal Health Classification** — Categorizes fetal health as **Normal, Suspect, or Pathological** using 21 Cardiotocography (CTG) measurements.
+* **Explainable AI with SHAP** — Provides feature-level explanations to help users understand the factors influencing each prediction.
+* **Performance & Clinical Dashboard** — Presents model performance metrics and relevant clinical reference information through an interactive interface.
 
 ---
 
-## 🖼️ Screenshots
+## 🧠 Machine Learning Models
 
-| Home | Maternal Risk | Fetal Health |
-|------|--------------|--------------|
-| ![Home](https://github.com/Archana-SS/MaternaInsight---Maternal-Health-Risk-and-Fetal-Health-Monitoring-System/blob/main/MaternaInsightImages/Home%20Page.png)) | ![Maternal](https://github.com/Archana-SS/MaternaInsight---Maternal-Health-Risk-and-Fetal-Health-Monitoring-System/blob/main/MaternaInsightImages/Maternal%20Health%20Risk%20Page.png)) | ![Fetal](https://github.com/Archana-SS/MaternaInsight---Maternal-Health-Risk-and-Fetal-Health-Monitoring-System/blob/main/MaternaInsightImages/Fetal%20health%20classification%20page.png) |
+| Prediction Task                 | Model             | Accuracy | Macro F1-Score |
+| ------------------------------- | ----------------- | -------- | -------------- |
+| Maternal Health Risk Assessment | LightGBM + Optuna | 90.64%   | 91.04%         |
+| Fetal Health Classification     | Stacking Ensemble | 94.13%   | 88.66%         |
 
 ---
 
+## 🖼️ Application Screenshots
+
+| Home Page                                                                                                                                                      | Maternal Risk Assessment                                                                                                                                                               | Fetal Health Classification                                                                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ![Home](https://github.com/Archana-SS/MaternaInsight---Maternal-Health-Risk-and-Fetal-Health-Monitoring-System/blob/main/MaternaInsightImages/Home%20Page.png) | ![Maternal](https://github.com/Archana-SS/MaternaInsight---Maternal-Health-Risk-and-Fetal-Health-Monitoring-System/blob/main/MaternaInsightImages/Maternal%20Health%20Risk%20Page.png) | ![Fetal](https://github.com/Archana-SS/MaternaInsight---Maternal-Health-Risk-and-Fetal-Health-Monitoring-System/blob/main/MaternaInsightImages/Fetal%20health%20classification%20page.png) |
+
 ---
 
-## ⚙️ Tech Stack
+## ⚙️ Technology Stack
 
-- **Frontend:** Streamlit, Plotly, streamlit-option-menu
-- **ML Models:** LightGBM, XGBoost, Random Forest, Stacking Ensemble
-- **Explainability:** SHAP (TreeExplainer + KernelExplainer)
-- **Preprocessing:** Scikit-learn, SMOTETomek (imbalanced-learn)
-- **Hyperparameter Tuning:** Optuna (100 trials)
+* **Frontend & Visualization:** Streamlit, Plotly, streamlit-option-menu
+* **Machine Learning:** LightGBM, XGBoost, Random Forest, and Stacking Ensemble
+* **Explainable AI:** SHAP using TreeExplainer and KernelExplainer
+* **Data Preprocessing:** Scikit-learn and SMOTETomek from imbalanced-learn
+* **Hyperparameter Optimization:** Optuna with 100 optimization trials
 
 ---
 
 ## 📊 Datasets
 
-| Dataset | Source | Records |
-|---------|--------|---------|
-| Maternal Health Risk | [UCI / Kaggle](https://www.kaggle.com/datasets/csafrit2/maternal-health-risk-data) | 1,014 |
-| Fetal Health CTG | [UCI / Kaggle](https://www.kaggle.com/datasets/andrewmvd/fetal-health-classification) | 2,126 |
+| Dataset                      | Source                                                                                | Number of Records |
+| ---------------------------- | ------------------------------------------------------------------------------------- | ----------------- |
+| Maternal Health Risk Dataset | [UCI / Kaggle](https://www.kaggle.com/datasets/csafrit2/maternal-health-risk-data)    | 1,014             |
+| Fetal Health CTG Dataset     | [UCI / Kaggle](https://www.kaggle.com/datasets/andrewmvd/fetal-health-classification) | 2,126             |
 
 ---
 
-## 🚀 Run Locally
+## 🚀 Run the Project Locally
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/maternainsight.git
@@ -74,17 +73,10 @@ streamlit run app.py
 
 ## ⚠️ Disclaimer
 
-MaternaInsight is a research-grade decision support tool. All predictions must be reviewed by a qualified healthcare professional. This system has not undergone clinical trial validation and is not approved for standalone diagnostic use.
+MaternaInsight is developed for **research and educational purposes** as a clinical decision support system. Its predictions are intended to support, not replace, professional medical judgment. All results should be interpreted and reviewed by qualified healthcare professionals.
+
+This application has **not undergone clinical trial validation** and is **not approved for use as an independent diagnostic tool**.
 
 ---
 
-## 👩‍💻 Developed By
 
-| Name | 
-|------|
-| Archana S Shetty |
-| Raksha Nandeesh |
-| Bhuvana J |
-| Sohan Anand |
-
-**JSS Science and Technology University | Dept. of CS&E | Academic Year 2025–26**
