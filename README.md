@@ -1,6 +1,6 @@
-\# 🏥 MaternaInsight — Maternal & Fetal Health Monitoring System
+## Maternova — maternal + new beginnings
 
-> **MaternaInsight is an end-to-end machine learning-based clinical decision support system for assessing maternal health risks and classifying fetal health conditions. Built with Python and Streamlit, the platform combines predictive analytics, explainable AI, and an interactive dashboard to support informed healthcare decision-making.**
+Maternova  is an end-to-end machine learning-based clinical decision support system for assessing maternal health risks and classifying fetal health conditions. Built with Python and Streamlit, the platform combines predictive analytics, explainable AI, and an interactive dashboard to support informed healthcare decision-making.
 
 
 
@@ -13,7 +13,7 @@ https://maternova-maternal-new-beginnings-l45cbs7swct8rw4ktyk68c.streamlit.app/
 
 ## 📌 Overview
 
-MaternaInsight is designed as a **research-oriented clinical decision support system** that assists healthcare professionals, nurses, and community health workers in evaluating maternal and fetal health conditions.
+Maternova is designed as a **research-oriented clinical decision support system** that assists healthcare professionals, nurses, and community health workers in evaluating maternal and fetal health conditions.
 
 The system provides:
 
@@ -31,15 +31,7 @@ The system provides:
 | Maternal Health Risk Assessment | LightGBM + Optuna | 90.64%   | 91.04%         |
 | Fetal Health Classification     | Stacking Ensemble | 94.13%   | 88.66%         |
 
----
-
-## 🖼️ Application Screenshots
-
-| Home Page                                                                                                                                                      | Maternal Risk Assessment                                                                                                                                                               | Fetal Health Classification                                                                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ![Home](https://github.com/Archana-SS/MaternaInsight---Maternal-Health-Risk-and-Fetal-Health-Monitoring-System/blob/main/MaternaInsightImages/Home%20Page.png) | ![Maternal](https://github.com/Archana-SS/MaternaInsight---Maternal-Health-Risk-and-Fetal-Health-Monitoring-System/blob/main/MaternaInsightImages/Maternal%20Health%20Risk%20Page.png) | ![Fetal](https://github.com/Archana-SS/MaternaInsight---Maternal-Health-Risk-and-Fetal-Health-Monitoring-System/blob/main/MaternaInsightImages/Fetal%20health%20classification%20page.png) |
-
----
+--- 
 
 ## ⚙️ Technology Stack
 
