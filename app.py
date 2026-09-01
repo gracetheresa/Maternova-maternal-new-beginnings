@@ -17,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# CSS — Soft Pink Medical Theme (White / Light)
+# CSS — Pale Blue Medical Theme (White / Light)
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
@@ -32,7 +32,7 @@ html, body, [class*="css"] {
     font-family: 'DM Sans', sans-serif !important;
 }
 [data-testid="stAppViewContainer"] {
-    background-color: #FFF5F7 !important;
+    background-color: #F0F7FF !important;
 }
 [data-testid="stHeader"] { background: transparent !important; }
 #MainMenu, footer { visibility: hidden; }
@@ -41,7 +41,7 @@ html, body, [class*="css"] {
 /* ── Sidebar ── */
 [data-testid="stSidebar"] {
     background: #FFFFFF !important;
-    border-right: 1.5px solid #FADADD;
+    border-right: 1.5px solid #BFDBFE;
 }
 [data-testid="stSidebar"] .block-container { padding: 1rem !important; }
 
@@ -59,8 +59,8 @@ span:not([data-testid]) { color: #374151 !important; }
     background:               #FFFFFF !important;
     color:                    #111827 !important;
     -webkit-text-fill-color:  #111827 !important;
-    caret-color:              #EC4899 !important;
-    border:        1.5px solid #FBCFE8 !important;
+    caret-color:              #60A5FA !important;
+    border:        1.5px solid #BFDBFE !important;
     border-radius: 10px       !important;
     font-size:     14px       !important;
     font-weight:   500        !important;
@@ -69,8 +69,8 @@ span:not([data-testid]) { color: #374151 !important; }
 }
 [data-testid="stNumberInput"] input:focus,
 [data-testid="stTextInput"]   input:focus {
-    border-color: #EC4899 !important;
-    box-shadow:   0 0 0 3px rgba(236,72,153,0.12) !important;
+    border-color: #60A5FA !important;
+    box-shadow:   0 0 0 3px rgba(96,165,250,0.12) !important;
     color:                   #111827 !important;
     -webkit-text-fill-color: #111827 !important;
 }
@@ -82,9 +82,9 @@ span:not([data-testid]) { color: #374151 !important; }
 
 /* Number spinner buttons */
 [data-testid="stNumberInput"] button {
-    background: #FFF0F5 !important;
-    border:     1px solid #FBCFE8 !important;
-    color:      #EC4899 !important;
+    background: #EFF6FF !important;
+    border:     1px solid #BFDBFE !important;
+    color:      #60A5FA !important;
 }
 
 /* Input + select wrapper — kill any inherited dark bg */
@@ -115,8 +115,8 @@ span:not([data-testid]) { color: #374151 !important; }
 
 [data-testid="stTooltipIcon"] svg,            
 [data-testid="tooltipHoverTarget"] svg {
-    fill: #EC4899 !important;
-    color: #EC4899 !important;
+    fill: #60A5FA !important;
+    color: #60A5FA !important;
     width: 14px !important;
     height: 14px !important;
     display: block !important;
@@ -137,7 +137,7 @@ div[role="tooltip"] span {
                  
 /* ── Buttons ── */
 .stButton > button {
-    background:    linear-gradient(135deg, #EC4899, #F472B6) !important;
+    background:    linear-gradient(135deg, #60A5FA, #93C5FD) !important;
     color:         #FFFFFF   !important;
     border:        none      !important;
     border-radius: 10px      !important;
@@ -149,12 +149,12 @@ div[role="tooltip"] span {
 }
 .stButton > button:hover {
     transform:  translateY(-1px);
-    box-shadow: 0 4px 14px rgba(236,72,153,0.35) !important;
+    box-shadow: 0 4px 14px rgba(96,165,250,0.35) !important;
 }
 
 /* ── Form submit button ── */
 [data-testid="stFormSubmitButton"] > button {
-    background:    linear-gradient(135deg, #EC4899, #F472B6) !important;
+    background:    linear-gradient(135deg, #60A5FA, #93C5FD) !important;
     color:         #FFFFFF   !important;
     border:        none      !important;
     border-radius: 10px      !important;
@@ -166,17 +166,17 @@ div[role="tooltip"] span {
 }
 [data-testid="stFormSubmitButton"] > button:hover {
     transform:  translateY(-1px);
-    box-shadow: 0 6px 18px rgba(236,72,153,0.4) !important;
+    box-shadow: 0 6px 18px rgba(96,165,250,0.4) !important;
 }
 
 /* ── Cards ── */
 .info-card {
     background:    #FFFFFF;
-    border:        1px solid #FBCFE8;
+    border:        1px solid #BFDBFE;
     border-radius: 14px;
     padding:       20px 24px;
     margin-bottom: 16px;
-    box-shadow:    0 2px 8px rgba(236,72,153,0.06);
+    box-shadow:    0 2px 8px rgba(96,165,250,0.06);
 }
 
 /* ── Section headers ── */
@@ -184,7 +184,7 @@ div[role="tooltip"] span {
     font-family: 'DM Serif Display', serif;
     font-size:   27px;
     font-weight: 400;
-    color:       #9D174D !important;
+    color:       #1E40AF !important;
     margin-bottom: 4px;
 }
 .section-sub {
@@ -198,7 +198,7 @@ div[role="tooltip"] span {
 .input-group-label {
     font-size:       11px;
     font-weight:     700;
-    color:           #BE185D !important;
+    color:           #1E40AF !important;
     text-transform:  uppercase;
     letter-spacing:  0.7px;
     margin-bottom:   4px;
@@ -222,8 +222,8 @@ div[role="tooltip"] span {
     color:         #111827 !important;
 }
 .result-high, .result-pathological {
-    background:    #FFF1F2;
-    border:        2px solid #F43F5E;
+    background:    #EFF6FF;
+    border:        2px solid #0284C7;
     border-radius: 14px;
     padding:       22px 26px;
     text-align:    center;
@@ -246,16 +246,16 @@ div[role="tooltip"] span {
 /* ── Metric cards ── */
 .metric-card {
     background:    #FFFFFF;
-    border:        1px solid #F9A8D4;
+    border:        1px solid #BFDBFE;
     border-radius: 12px;
     padding:       18px 16px;
     text-align:    center;
-    box-shadow:    0 4px 12px rgba(236,72,153,0.08);
+    box-shadow:    0 4px 12px rgba(96,165,250,0.08);
 }
 .metric-value {
     font-size:   26px;
     font-weight: 700;
-    color:       #BE185D !important;
+    color:       #1E40AF !important;
 }
 .metric-label {
     font-size:  12px;
@@ -265,12 +265,12 @@ div[role="tooltip"] span {
 
 /* ── Disclaimer ── */
 .disclaimer {
-    background:   #FFF1F2;
-    border-left:  4px solid #E11D48;
+    background:   #EFF6FF;
+    border-left:  4px solid #0284C7;
     border-radius: 0 10px 10px 0;
     padding:       13px 16px;
     font-size:     13px;
-    color:         #7F1D1D !important;
+    color:         #0C4A6E !important;
     font-weight:   500;
     margin-top:    16px;
 }
@@ -433,7 +433,7 @@ def render_shap_chart(shap_vals, feature_names, prediction_class, title, top_n=1
         df["Abs"] = df["SHAP"].abs()
         df = df.nlargest(top_n, "Abs").sort_values("SHAP")
  
-        colors = ["#EC4899" if v > 0 else "#3B82F6" for v in df["SHAP"]]
+        colors = ["#60A5FA" if v > 0 else "#3B82F6" for v in df["SHAP"]]
         labels = [f"+{v:.3f}" if v > 0 else f"{v:.3f}" for v in df["SHAP"]]
  
         fig = go.Figure(go.Bar(
@@ -447,7 +447,7 @@ def render_shap_chart(shap_vals, feature_names, prediction_class, title, top_n=1
         ))
         fig.add_vline(x=0, line_color="#9CA3AF", line_width=1.5)
         fig.update_layout(
-            title=dict(text=title, font=dict(size=13, color="#9D174D"), x=0),
+            title=dict(text=title, font=dict(size=13, color="#1E40AF"), x=0),
             plot_bgcolor="white", paper_bgcolor="white",
             margin=dict(l=10, r=60, t=36, b=10),
             height=340,
@@ -467,14 +467,14 @@ def render_shap_chart(shap_vals, feature_names, prediction_class, title, top_n=1
 with st.sidebar:
     st.markdown("""
     <div style='text-align:center; padding:16px 0 8px 0;'>
-        <div style='font-family:"DM Serif Display",serif; font-size:26px; color:#9D174D;'>
+        <div style='font-family:"DM Serif Display",serif; font-size:26px; color:#1E40AF;'>
             MaternaInsight
         </div>
         <div style='font-size:12px; color:#9CA3AF; margin-top:4px;'>
             Maternal Health Risk &amp; Fetal Health Monitoring System
         </div>
     </div>
-    <hr style='border:none; border-top:1.5px solid #FADADD; margin:12px 0;'>
+    <hr style='border:none; border-top:1.5px solid #BFDBFE; margin:12px 0;'>
     """, unsafe_allow_html=True)
 
     selected = option_menu(
@@ -484,26 +484,26 @@ with st.sidebar:
         default_index=0,
         styles={
             "container":         {"padding": "0", "background-color": "#FFFFFF"},
-            "icon":              {"color": "#F9A8D4", "font-size": "15px"},
+            "icon":              {"color": "#BFDBFE", "font-size": "15px"},
             "nav-link":          {"font-size": "14px", "font-weight": "500",
                                   "color": "#374151", "padding": "10px 14px",
                                   "border-radius": "10px", "margin": "2px 0"},
-            "nav-link-selected": {"background": "linear-gradient(135deg,#EC4899,#F472B6)",
+            "nav-link-selected": {"background": "linear-gradient(135deg,#60A5FA,#93C5FD)",
                                   "color": "#FFFFFF", "font-weight": "600"},
         }
     )
 
     st.markdown("""
-    <hr style='border:none; border-top:1.5px solid #FADADD; margin:16px 0 12px 0;'>
-    <div style='font-size:11px; font-weight:700; color:#F9A8D4; text-transform:uppercase;
+    <hr style='border:none; border-top:1.5px solid #BFDBFE; margin:16px 0 12px 0;'>
+    <div style='font-size:11px; font-weight:700; color:#BFDBFE; text-transform:uppercase;
                 letter-spacing:0.8px; margin-bottom:10px;'>Model Accuracy</div>
     <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;
-                background:#FFF5F7; padding:8px 10px; border-radius:8px;'>
+                background:#F0F7FF; padding:8px 10px; border-radius:8px;'>
         <span style='font-size:12px; color:#374151; font-weight:500;'>Maternal (LightGBM)</span>
         <span style='font-size:13px; font-weight:700; color:#16A34A;'>90.64%</span>
     </div>
     <div style='display:flex; justify-content:space-between; align-items:center;
-                background:#FFF5F7; padding:8px 10px; border-radius:8px;'>
+                background:#F0F7FF; padding:8px 10px; border-radius:8px;'>
         <span style='font-size:12px; color:#374151; font-weight:500;'>Fetal (Stacking)</span>
         <span style='font-size:13px; font-weight:700; color:#16A34A;'>94.13%</span>
     </div>
@@ -519,7 +519,7 @@ if selected == "About":
         st.markdown("""
         <div class="info-card">
             <div style='font-size:34px; margin-bottom:10px;'>🤱</div>
-            <div style='font-size:17px; font-weight:700; color:#9D174D; margin-bottom:8px;'>
+            <div style='font-size:17px; font-weight:700; color:#1E40AF; margin-bottom:8px;'>
                 Maternal Health Risk Prediction
             </div>
             <div style='font-size:14px; color:#4B5563; line-height:1.75;'>
@@ -531,8 +531,8 @@ if selected == "About":
                 <span style='background:#F0FDF4; color:#16A34A; font-size:11px; font-weight:600;
                              padding:3px 10px; border-radius:20px; border:1px solid #BBF7D0;'>
                     90.64% Accuracy</span>
-                <span style='background:#FFF5F7; color:#BE185D; font-size:11px; font-weight:600;
-                             padding:3px 10px; border-radius:20px; border:1px solid #FBCFE8;'>
+                <span style='background:#EFF6FF; color:#1E40AF; font-size:11px; font-weight:600;
+                             padding:3px 10px; border-radius:20px; border:1px solid #BFDBFE;'>
                     LightGBM</span>
                 <span style='background:#EFF6FF; color:#2563EB; font-size:11px; font-weight:600;
                              padding:3px 10px; border-radius:20px; border:1px solid #BFDBFE;'>
@@ -545,7 +545,7 @@ if selected == "About":
         st.markdown("""
         <div class="info-card">
             <div style='font-size:34px; margin-bottom:10px;'>👶</div>
-            <div style='font-size:17px; font-weight:700; color:#9D174D; margin-bottom:8px;'>
+            <div style='font-size:17px; font-weight:700; color:#1E40AF; margin-bottom:8px;'>
                 Fetal Health Classification
             </div>
             <div style='font-size:14px; color:#4B5563; line-height:1.75;'>
@@ -557,8 +557,8 @@ if selected == "About":
                 <span style='background:#F0FDF4; color:#16A34A; font-size:11px; font-weight:600;
                              padding:3px 10px; border-radius:20px; border:1px solid #BBF7D0;'>
                     94.13% Accuracy</span>
-                <span style='background:#FFF5F7; color:#BE185D; font-size:11px; font-weight:600;
-                             padding:3px 10px; border-radius:20px; border:1px solid #FBCFE8;'>
+                <span style='background:#EFF6FF; color:#1E40AF; font-size:11px; font-weight:600;
+                             padding:3px 10px; border-radius:20px; border:1px solid #BFDBFE;'>
                     Stacking Ensemble</span>
                 <span style='background:#EFF6FF; color:#2563EB; font-size:11px; font-weight:600;
                              padding:3px 10px; border-radius:20px; border:1px solid #BFDBFE;'>
@@ -570,7 +570,7 @@ if selected == "About":
     # ── How It Works — 3 step visual ──
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
-    <div style='font-size:16px; font-weight:700; color:#9D174D;
+    <div style='font-size:16px; font-weight:700; color:#1E40AF;
                 margin-bottom:16px; text-align:center; letter-spacing:0.3px;'>
         How It Works
     </div>
@@ -581,10 +581,10 @@ if selected == "About":
     with s1:
         st.markdown("""
         <div class="info-card" style='text-align:center; padding:24px 20px;'>
-            <div style='width:52px; height:52px; background:linear-gradient(135deg,#EC4899,#F472B6);
+            <div style='width:52px; height:52px; background:linear-gradient(135deg,#60A5FA,#93C5FD);
                         border-radius:50%; display:flex; align-items:center; justify-content:center;
                         margin:0 auto 14px auto; font-size:22px;'>🩺</div>
-            <div style='font-size:12px; font-weight:700; color:#EC4899; text-transform:uppercase;
+            <div style='font-size:12px; font-weight:700; color:#60A5FA; text-transform:uppercase;
                         letter-spacing:0.8px; margin-bottom:6px;'>Step 1</div>
             <div style='font-size:15px; font-weight:700; color:#1F2937; margin-bottom:8px;'>
                 Enter Patient Data
@@ -599,7 +599,7 @@ if selected == "About":
     with arr1:
         st.markdown("""
         <div style='display:flex; align-items:center; justify-content:center;
-                    height:100%; padding-top:40px; font-size:28px; color:#FBCFE8;'>
+                    height:100%; padding-top:40px; font-size:28px; color:#BFDBFE;'>
             →
         </div>
         """, unsafe_allow_html=True)
@@ -607,10 +607,10 @@ if selected == "About":
     with s2:
         st.markdown("""
         <div class="info-card" style='text-align:center; padding:24px 20px;'>
-            <div style='width:52px; height:52px; background:linear-gradient(135deg,#EC4899,#F472B6);
+            <div style='width:52px; height:52px; background:linear-gradient(135deg,#60A5FA,#93C5FD);
                         border-radius:50%; display:flex; align-items:center; justify-content:center;
                         margin:0 auto 14px auto; font-size:22px;'>⚙️</div>
-            <div style='font-size:12px; font-weight:700; color:#EC4899; text-transform:uppercase;
+            <div style='font-size:12px; font-weight:700; color:#60A5FA; text-transform:uppercase;
                         letter-spacing:0.8px; margin-bottom:6px;'>Step 2</div>
             <div style='font-size:15px; font-weight:700; color:#1F2937; margin-bottom:8px;'>
                 ML Model Processes
@@ -625,7 +625,7 @@ if selected == "About":
     with arr2:
         st.markdown("""
         <div style='display:flex; align-items:center; justify-content:center;
-                    height:100%; padding-top:40px; font-size:28px; color:#FBCFE8;'>
+                    height:100%; padding-top:40px; font-size:28px; color:#BFDBFE;'>
             →
         </div>
         """, unsafe_allow_html=True)
@@ -633,10 +633,10 @@ if selected == "About":
     with s3:
         st.markdown("""
         <div class="info-card" style='text-align:center; padding:24px 20px;'>
-            <div style='width:52px; height:52px; background:linear-gradient(135deg,#EC4899,#F472B6);
+            <div style='width:52px; height:52px; background:linear-gradient(135deg,#60A5FA,#93C5FD);
                         border-radius:50%; display:flex; align-items:center; justify-content:center;
                         margin:0 auto 14px auto; font-size:22px;'>📋</div>
-            <div style='font-size:12px; font-weight:700; color:#EC4899; text-transform:uppercase;
+            <div style='font-size:12px; font-weight:700; color:#60A5FA; text-transform:uppercase;
                         letter-spacing:0.8px; margin-bottom:6px;'>Step 3</div>
             <div style='font-size:15px; font-weight:700; color:#1F2937; margin-bottom:8px;'>
                 Review & Act
@@ -651,7 +651,7 @@ if selected == "About":
     # ── Key Features ──
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
-    <div style='font-size:16px; font-weight:700; color:#9D174D;
+    <div style='font-size:16px; font-weight:700; color:#1E40AF;
                 margin-bottom:16px; text-align:center;'>
         What Makes This System Unique
     </div>""", unsafe_allow_html=True)
@@ -682,14 +682,14 @@ if selected == "About":
         col.markdown(f"""
         <div class="info-card" style='margin-bottom:14px; min-height:155px;'>
             <div style='font-size:24px; margin-bottom:8px;'>{icon}</div>
-            <div style='font-size:14px; font-weight:700; color:#9D174D; margin-bottom:6px;'>{title}</div>
+            <div style='font-size:14px; font-weight:700; color:#1E40AF; margin-bottom:6px;'>{title}</div>
             <div style='font-size:13px; color:#6B7280; line-height:1.6;'>{desc}</div>
         </div>""", unsafe_allow_html=True)
  
     # ── WHO Statistics ──
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
-    <div style='font-size:16px; font-weight:700; color:#9D174D;
+    <div style='font-size:16px; font-weight:700; color:#1E40AF;
                 margin-bottom:16px; text-align:center;'>
         Why Early Risk Detection Matters
     </div>""", unsafe_allow_html=True)
@@ -697,32 +697,32 @@ if selected == "About":
     st.markdown("""
     <div class="info-card" style='padding:24px 28px;'>
         <div style='display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center;'>
-            <div style='padding:16px 8px; border-right:1px solid #FADADD;'>
-                <div style='font-size:30px; font-weight:800; color:#BE185D; margin-bottom:6px;'>810</div>
+            <div style='padding:16px 8px; border-right:1px solid #BFDBFE;'>
+                <div style='font-size:30px; font-weight:800; color:#1E40AF; margin-bottom:6px;'>810</div>
                 <div style='font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;'>Women Die Every Day</div>
                 <div style='font-size:11px; color:#9CA3AF; line-height:1.5;'>
                     due to preventable pregnancy or childbirth complications<br><i>(WHO, 2023)</i></div>
             </div>
-            <div style='padding:16px 8px; border-right:1px solid #FADADD;'>
-                <div style='font-size:30px; font-weight:800; color:#BE185D; margin-bottom:6px;'>94%</div>
+            <div style='padding:16px 8px; border-right:1px solid #BFDBFE;'>
+                <div style='font-size:30px; font-weight:800; color:#1E40AF; margin-bottom:6px;'>94%</div>
                 <div style='font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;'>Deaths in Low-Income Countries</div>
                 <div style='font-size:11px; color:#9CA3AF; line-height:1.5;'>
                     where access to specialist care and monitoring is severely limited<br><i>(WHO, 2023)</i></div>
             </div>
-            <div style='padding:16px 8px; border-right:1px solid #FADADD;'>
-                <div style='font-size:30px; font-weight:800; color:#BE185D; margin-bottom:6px;'>~1M</div>
+            <div style='padding:16px 8px; border-right:1px solid #BFDBFE;'>
+                <div style='font-size:30px; font-weight:800; color:#1E40AF; margin-bottom:6px;'>~1M</div>
                 <div style='font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;'>Newborns Die Within 24 Hours</div>
                 <div style='font-size:11px; color:#9CA3AF; line-height:1.5;'>
                     from birth complications that early fetal monitoring can help prevent<br><i>(WHO, 2023)</i></div>
             </div>
             <div style='padding:16px 8px;'>
-                <div style='font-size:30px; font-weight:800; color:#BE185D; margin-bottom:6px;'>2/3</div>
+                <div style='font-size:30px; font-weight:800; color:#1E40AF; margin-bottom:6px;'>2/3</div>
                 <div style='font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;'>Deaths Are Preventable</div>
                 <div style='font-size:11px; color:#9CA3AF; line-height:1.5;'>
                     with timely risk assessment, early intervention, and skilled clinical support<br><i>(WHO, 2023)</i></div>
             </div>
         </div>
-        <div style='margin-top:18px; padding-top:14px; border-top:1px solid #FADADD;
+        <div style='margin-top:18px; padding-top:14px; border-top:1px solid #BFDBFE;
                     font-size:13px; color:#6B7280; text-align:center; line-height:1.6;'>
             MaternaInsight addresses this gap by bringing systematic ML-based risk screening
             to any clinical setting with a browser — from urban hospitals to rural health centres.
@@ -816,7 +816,7 @@ elif selected == "Maternal Risk":
                     st.markdown(f"""
                     <div class="result-high">
                         <div style='font-size:35px;'>🚨</div>
-                        <div class="result-title" style='color:#E11D48;'>High Risk</div>      
+                        <div class="result-title" style='color:#0284C7;'>High Risk</div>      
                         <div style='margin-top:8px; font-size:14px; font-weight:600; color:#065F46;'>
                             Confidence: {confidence:.2f}%
                         </div>
@@ -835,13 +835,13 @@ elif selected == "Maternal Risk":
             st.markdown("<br>", unsafe_allow_html=True)
             st.markdown("""
             <div class="info-card">
-                <div style='font-size:14px; font-weight:700; color:#9D174D; margin-bottom:4px;'>
+                <div style='font-size:14px; font-weight:700; color:#1E40AF; margin-bottom:4px;'>
                     🔍 Model Explainability — Why did the model predict this?
                 </div>
                 <div style='font-size:12px; color:#6B7280; margin-bottom:14px;'>
                     SHAP (SHapley Additive exPlanations) shows how much each feature
                     contributed to this specific prediction.
-                    <b style='color:#EC4899;'>Pink bars</b> show factors that pushed the model toward this prediction.
+                    <b style='color:#60A5FA;'>Blue bars</b> show factors that pushed the model toward this prediction.
                     <b style='color:#3B82F6;'>Blue bars</b> show factors that pushed the model away from this prediction.
                 </div>
             """, unsafe_allow_html=True)
@@ -974,7 +974,7 @@ elif selected == "Fetal Health":
                     st.markdown(f"""
                     <div class="result-pathological">
                         <div style='font-size:35px;'>🚨</div>
-                        <div class="result-title" style='color:#E11D48;'>Pathological</div>
+                        <div class="result-title" style='color:#0284C7;'>Pathological</div>
                         <div style='margin-top:8px; font-size:14px; font-weight:600; color:#065F46;'>
                             Confidence: {confidence:.2f}%
                         </div>
@@ -993,13 +993,13 @@ elif selected == "Fetal Health":
             st.markdown("<br>", unsafe_allow_html=True)
             st.markdown("""
             <div class="info-card">
-                <div style='font-size:14px; font-weight:700; color:#9D174D; margin-bottom:4px;'>
+                <div style='font-size:14px; font-weight:700; color:#1E40AF; margin-bottom:4px;'>
                     🔍 Model Explainability — Why did the model predict this?
                 </div>
                 <div style='font-size:12px; color:#6B7280; margin-bottom:14px;'>
                     SHAP (SHapley Additive exPlanations) shows how much each CTG feature
                     contributed to this specific prediction.
-                    <b style='color:#EC4899;'>Pink bars</b> show factors that pushed the model toward this prediction.
+                    <b style='color:#60A5FA;'>Blue bars</b> show factors that pushed the model toward this prediction.
                     <b style='color:#3B82F6;'>Blue bars</b> show factors that pushed the model away from this prediction.
                     Note: KernelExplainer may take 10–15 seconds to compute.
                 </div>
@@ -1054,8 +1054,8 @@ elif selected == "System Performance Dashboard":
 
         # ── Intended Use ──
         st.markdown("""
-        <div class="info-card" style='border-left: 4px solid #EC4899;'>
-            <div style='font-size:15px; font-weight:700; color:#9D174D; margin-bottom:10px;'>🎯 Intended Use</div>
+        <div class="info-card" style='border-left: 4px solid #60A5FA;'>
+            <div style='font-size:15px; font-weight:700; color:#1E40AF; margin-bottom:10px;'>🎯 Intended Use</div>
             <div style='font-size:13px; color:#374151; line-height:1.8;'>
                 MaternaInsight is designed as a <b>clinical decision support tool</b> for use by qualified healthcare
                 professionals — including obstetricians, midwives, nurses, and trained rural health workers.
@@ -1067,10 +1067,10 @@ elif selected == "System Performance Dashboard":
                              padding:3px 10px; border-radius:20px; border:1px solid #BBF7D0;'>✔ Screening support</span>
                 <span style='background:#F0FDF4; color:#16A34A; font-size:11px; font-weight:600;
                              padding:3px 10px; border-radius:20px; border:1px solid #BBF7D0;'>✔ Risk stratification aid</span>
-                <span style='background:#FFF1F2; color:#BE123C; font-size:11px; font-weight:600;
-                             padding:3px 10px; border-radius:20px; border:1px solid #FECDD3;'>✘ Not for standalone diagnosis</span>
-                <span style='background:#FFF1F2; color:#BE123C; font-size:11px; font-weight:600;
-                             padding:3px 10px; border-radius:20px; border:1px solid #FECDD3;'>✘ Not clinically trial-validated</span>
+                <span style='background:#EFF6FF; color:#1E40AF; font-size:11px; font-weight:600;
+                             padding:3px 10px; border-radius:20px; border:1px solid #BFDBFE;'>✘ Not for standalone diagnosis</span>
+                <span style='background:#EFF6FF; color:#1E40AF; font-size:11px; font-weight:600;
+                             padding:3px 10px; border-radius:20px; border:1px solid #BFDBFE;'>✘ Not clinically trial-validated</span>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -1079,7 +1079,7 @@ elif selected == "System Performance Dashboard":
 
         # ── How to interpret confidence scores ──
         st.markdown("""
-        <div style='font-size:15px; font-weight:700; color:#9D174D; margin-bottom:12px;'>
+        <div style='font-size:15px; font-weight:700; color:#1E40AF; margin-bottom:12px;'>
             📈 How to Interpret Confidence Scores
         </div>
         """, unsafe_allow_html=True)
@@ -1090,7 +1090,7 @@ elif selected == "System Performance Dashboard":
              "Model is strongly weighted toward this class. Result is reliable but must still be interpreted alongside clinical findings."),
             ("65–84%", "Moderate Confidence", "#D97706", "#FFF7ED",
              "Model shows a clear lean but is less certain. Treat as a useful signal — corroborate with clinical assessment before acting."),
-            ("< 65%", "Low Confidence", "#E11D48", "#FFF1F2",
+            ("< 65%", "Low Confidence", "#0284C7", "#EFF6FF",
              "Model is uncertain, possibly due to borderline or atypical values. Do not rely on this prediction — escalate to clinical review.")
         ]):
             col.markdown(f"""
@@ -1108,7 +1108,7 @@ elif selected == "System Performance Dashboard":
 
         with ref_mat:
             st.markdown("""
-            <div style='font-size:15px; font-weight:700; color:#9D174D; margin-bottom:12px;'>
+            <div style='font-size:15px; font-weight:700; color:#1E40AF; margin-bottom:12px;'>
                 🤱 Maternal — Normal Reference Ranges
             </div>
             """, unsafe_allow_html=True)
@@ -1122,7 +1122,7 @@ elif selected == "System Performance Dashboard":
             ]:
                 st.markdown(f"""
                 <div style='display:flex; justify-content:space-between; align-items:flex-start;
-                            padding:9px 12px; border-bottom:1px solid #FFF0F5; gap:8px;'>
+                            padding:9px 12px; border-bottom:1px solid #EFF6FF; gap:8px;'>
                     <span style='font-size:13px; font-weight:600; color:#1F2937; min-width:130px;'>{param}</span>
                     <span style='font-size:12px; color:#059669; font-weight:600; min-width:100px;'>{normal}</span>
                     <span style='font-size:11px; color:#9CA3AF; text-align:right; flex:1;'>{flag}</span>
@@ -1130,7 +1130,7 @@ elif selected == "System Performance Dashboard":
 
         with ref_fetal:
             st.markdown("""
-            <div style='font-size:15px; font-weight:700; color:#9D174D; margin-bottom:12px;'>
+            <div style='font-size:15px; font-weight:700; color:#1E40AF; margin-bottom:12px;'>
                 👶 Fetal CTG — Normal Reference Ranges
             </div>
             """, unsafe_allow_html=True)
@@ -1146,7 +1146,7 @@ elif selected == "System Performance Dashboard":
             ]:
                 st.markdown(f"""
                 <div style='display:flex; justify-content:space-between; align-items:flex-start;
-                            padding:9px 12px; border-bottom:1px solid #FFF0F5; gap:8px;'>
+                            padding:9px 12px; border-bottom:1px solid #EFF6FF; gap:8px;'>
                     <span style='font-size:13px; font-weight:600; color:#1F2937; min-width:130px;'>{param}</span>
                     <span style='font-size:12px; color:#059669; font-weight:600; min-width:80px;'>{normal}</span>
                     <span style='font-size:11px; color:#9CA3AF; text-align:right; flex:1;'>{flag}</span>
@@ -1156,7 +1156,7 @@ elif selected == "System Performance Dashboard":
 
         # ── What does each class mean clinically ──
         st.markdown("""
-        <div style='font-size:15px; font-weight:700; color:#9D174D; margin-bottom:12px;'>
+        <div style='font-size:15px; font-weight:700; color:#1E40AF; margin-bottom:12px;'>
             🏷️ What Each Prediction Class Means Clinically
         </div>
         """, unsafe_allow_html=True)
@@ -1171,7 +1171,7 @@ elif selected == "System Performance Dashboard":
                  "Parameters within normal ranges. Continue routine antenatal care with scheduled reviews."),
                 ("🟡 Mid Risk",  "#D97706", "#FFF7ED", "#F59E0B",
                  "One or more borderline parameters. Enhanced monitoring recommended. Follow-up within 1–2 weeks; consider specialist referral."),
-                ("🔴 High Risk", "#E11D48", "#FFF1F2", "#F43F5E",
+                ("🔴 High Risk", "#0284C7", "#EFF6FF", "#F43F5E",
                  "Critical parameters detected. Immediate medical attention required. Refer to obstetrician or hospital without delay."),
             ]:
                 st.markdown(f"""
@@ -1190,7 +1190,7 @@ elif selected == "System Performance Dashboard":
                  "CTG patterns within normal limits. Fetal heart rate and variability indicate healthy status. Continue routine monitoring."),
                 ("🟡 Suspect",     "#D97706", "#FFF7ED", "#F59E0B",
                  "Borderline CTG abnormalities. Requires further clinical evaluation. Consider repeat CTG, fetal scalp pH, or senior clinician review."),
-                ("🔴 Pathological","#E11D48", "#FFF1F2", "#F43F5E",
+                ("🔴 Pathological","#0284C7", "#EFF6FF", "#F43F5E",
                  "Significant CTG abnormalities detected. Possible fetal distress. Immediate obstetric review and intervention assessment required."),
             ]:
                 st.markdown(f"""
@@ -1205,7 +1205,7 @@ elif selected == "System Performance Dashboard":
         # ── Known Limitations ──
         st.markdown("""
         <div class="info-card" style='border-left: 4px solid #F59E0B;'>
-            <div style='font-size:15px; font-weight:700; color:#9D174D; margin-bottom:12px;'>⚠️ Known Limitations — Read Before Use</div>
+            <div style='font-size:15px; font-weight:700; color:#1E40AF; margin-bottom:12px;'>⚠️ Known Limitations — Read Before Use</div>
             <div style='display:grid; grid-template-columns:1fr 1fr; gap:10px;'>
         """, unsafe_allow_html=True)
         for lim in [
@@ -1228,10 +1228,10 @@ elif selected == "System Performance Dashboard":
         # ── Data provenance ──
         st.markdown("""
         <div class="info-card">
-            <div style='font-size:15px; font-weight:700; color:#9D174D; margin-bottom:10px;'>📂 Data Provenance</div>
+            <div style='font-size:15px; font-weight:700; color:#1E40AF; margin-bottom:10px;'>📂 Data Provenance</div>
             <div style='display:grid; grid-template-columns:1fr 1fr; gap:16px; font-size:13px; color:#374151; line-height:1.8;'>
                 <div>
-                    <b style='color:#BE185D;'>Maternal Health Risk Dataset</b><br>
+                    <b style='color:#1E40AF;'>Maternal Health Risk Dataset</b><br>
                     Source: Kaggle — csafrit2/maternal-health-risk-data<br>
                     Records: 1,014 patient observations<br>
                     Features: Age, Systolic BP, Diastolic BP, Blood Glucose, Heart Rate<br>
@@ -1243,7 +1243,7 @@ elif selected == "System Performance Dashboard":
                     Electrical Engineering, vol 632. Springer, Singapore.
                 </div>
                 <div>
-                    <b style='color:#BE185D;'>Fetal Health CTG Dataset</b><br>
+                    <b style='color:#1E40AF;'>Fetal Health CTG Dataset</b><br>
                     Source: Kaggle — andrewmvd/fetal-health-classification<br>
                     Records: 2,126 CTG examinations<br>
                     Features: 21 features extracted from Cardiotocogram exams<br>
@@ -1288,8 +1288,8 @@ elif selected == "System Performance Dashboard":
         st.markdown("<br>", unsafe_allow_html=True)
         ch1, ch2 = st.columns(2, gap="large")
 
-        PINK  = "#EC4899"
-        DPINK = "#9D174D"
+        PINK  = "#60A5FA"
+        DPINK = "#1E40AF"
 
         with ch1:
             st.markdown("#### Maternal Model — 12 Version Journey")
@@ -1300,7 +1300,7 @@ elif selected == "System Performance Dashboard":
                 mode="lines+markers",
                 line=dict(color=PINK, width=2.5),
                 marker=dict(size=8, color=PINK, line=dict(color="white", width=2)),
-                fill="tozeroy", fillcolor="rgba(236,72,153,0.07)",
+                fill="tozeroy", fillcolor="rgba(96,165,250,0.07)",
                 hovertemplate="<b>%{x}</b><br>Accuracy: %{y}%<extra></extra>"
             ))
             fig1.add_hline(y=90, line_dash="dot", line_color="#EF4444",
@@ -1309,9 +1309,9 @@ elif selected == "System Performance Dashboard":
             fig1.update_layout(
                 plot_bgcolor="white", paper_bgcolor="white",
                 margin=dict(l=10, r=10, t=10, b=10), height=300,
-                yaxis=dict(range=[70, 95], title="Accuracy (%)", gridcolor="#FFF0F5",
+                yaxis=dict(range=[70, 95], title="Accuracy (%)", gridcolor="#EFF6FF",
                            tickfont=dict(color="#37393D")),
-                xaxis=dict(gridcolor="#FFF0F5", tickfont=dict(color="#38393A", size=10))
+                xaxis=dict(gridcolor="#EFF6FF", tickfont=dict(color="#38393A", size=10))
             )
             st.plotly_chart(fig1, use_container_width=True)
 
@@ -1329,14 +1329,14 @@ elif selected == "System Performance Dashboard":
             fig2.add_trace(go.Bar(
                 name="Macro F1", x=models_f,
                 y=[87.10, 87.65, 87.65, 88.50, 88.66],
-                marker_color="#F9A8D4",
+                marker_color="#BFDBFE",
                 text=["87.10%","87.65%","87.65%","88.50%","88.66%"],
                 textposition="outside", textfont=dict(size=10)
             ))
             fig2.update_layout(
                 barmode="group", plot_bgcolor="white", paper_bgcolor="white",
                 margin=dict(l=10, r=10, t=10, b=10), height=300,
-                yaxis=dict(range=[80, 98], title="Score (%)", gridcolor="#FFF0F5",
+                yaxis=dict(range=[80, 98], title="Score (%)", gridcolor="#EFF6FF",
                            tickfont=dict(color="#151616")),
                 xaxis=dict(tickfont=dict(color="#1C1C1D", size=10)),
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0,
