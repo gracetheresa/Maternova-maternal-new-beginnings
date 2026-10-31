@@ -463,6 +463,39 @@ def render_shap_chart(shap_vals, feature_names, prediction_class, title, top_n=1
     except Exception as e:
         raise ValueError(f"render_shap_chart failed: {e}")
 
+
+def render_prediction_report(report_key, report_title, file_name):
+    report = st.session_state.get(report_key)
+    if not report:
+        return
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown(f'<div class="section-header" style="font-size:23px;">📋 {report_title}</div>', unsafe_allow_html=True)
+    result_col, confidence_col = st.columns(2, gap="medium")
+    result_col.metric("Classification", report["classification"])
+    confidence_col.metric("Model confidence", f'{report["confidence"]:.2f}%')
+    st.dataframe(
+        pd.DataFrame(report["measurements"].items(), columns=["Measurement", "Entered value"]),
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    export = {
+        "Assessment": report_title,
+        "Classification": report["classification"],
+        "Model confidence (%)": round(report["confidence"], 2),
+        **report["measurements"],
+    }
+    st.download_button(
+        "⬇️ Download assessment report as CSV",
+        data=pd.DataFrame([export]).to_csv(index=False),
+        file_name=file_name,
+        mime="text/csv",
+        use_container_width=True,
+        key=f"{report_key}_download",
+    )
+
+
 # SIDEBAR
 with st.sidebar:
     st.markdown("""
@@ -479,8 +512,8 @@ with st.sidebar:
 
     selected = option_menu(
         menu_title=None,
-        options=["About", "Maternal Risk", "Fetal Health", "System Performance Dashboard"],
-        icons=["house-heart", "person-heart", "heart-pulse", "bar-chart"],
+        options=["About", "Maternal Risk", "Fetal Health", "Lab Report", "System Performance Dashboard"],
+        icons=["house-heart", "person-heart", "heart-pulse", "clipboard2-pulse", "bar-chart"],
         default_index=0,
         styles={
             "container":         {"padding": "0", "background-color": "#FFFFFF"},
@@ -776,6 +809,7 @@ elif selected == "Maternal Risk":
             submitted = st.form_submit_button("🔍 Predict Maternal Risk", use_container_width=True)
 
     if submitted:
+        st.session_state.pop("maternal_prediction_report", None)
         try:
             features        = engineer_maternal_features(age, systolic_bp, diastolic_bp, bs, body_temp, heart_rate)
             features_scaled = maternal_scaler.transform(features)
@@ -783,6 +817,18 @@ elif selected == "Maternal Risk":
 
             probs = maternal_model.predict_proba(features_scaled)
             confidence = max(probs[0]) * 100
+            st.session_state["maternal_prediction_report"] = {
+                "classification": ["Low Risk", "Mid Risk", "High Risk"][int(prediction)],
+                "confidence": confidence,
+                "measurements": {
+                    "Age (years)": age,
+                    "Systolic BP (mmHg)": systolic_bp,
+                    "Diastolic BP (mmHg)": diastolic_bp,
+                    "Blood glucose (mmol/L)": bs,
+                    "Body temperature (°C)": body_temp,
+                    "Heart rate (bpm)": heart_rate,
+                },
+            }
 
             st.markdown("<br>", unsafe_allow_html=True)
             r1, r2 = st.columns([1, 1], gap="large")
@@ -874,6 +920,12 @@ elif selected == "Maternal Risk":
         except Exception as e:
             st.error(f"Prediction error: {e}")
 
+    render_prediction_report(
+        "maternal_prediction_report",
+        "Maternal Assessment Report",
+        "maternal_assessment_report.csv",
+    )
+
 
 # PAGE: FETAL HEALTH
 elif selected == "Fetal Health":
@@ -927,6 +979,7 @@ elif selected == "Fetal Health":
             submitted_fetal = st.form_submit_button("🔍  Classify Fetal Health", use_container_width=True)
 
     if submitted_fetal:
+        st.session_state.pop("fetal_prediction_report", None)
         try:
             features        = engineer_fetal_features(
                 baseline, accels, fetal_mov, uterine_cont,
@@ -941,6 +994,33 @@ elif selected == "Fetal Health":
 
             probs = fetal_model.predict_proba(features_scaled)
             confidence = max(probs[0]) * 100
+            st.session_state["fetal_prediction_report"] = {
+                "classification": ["Normal", "Suspect", "Pathological"][int(prediction)],
+                "confidence": confidence,
+                "measurements": {
+                    "Baseline FHR (bpm)": baseline,
+                    "Accelerations": accels,
+                    "Fetal movement": fetal_mov,
+                    "Uterine contractions": uterine_cont,
+                    "Light decelerations": light_decel,
+                    "Severe decelerations": severe_decel,
+                    "Prolonged decelerations": prolonged_decel,
+                    "Abnormal STV (%)": abnormal_stv,
+                    "Mean STV (ms)": mean_stv,
+                    "Time with abnormal LTV (%)": pct_altv,
+                    "Mean LTV (ms)": mean_ltv,
+                    "Histogram width": hist_width,
+                    "Histogram minimum FHR": hist_min,
+                    "Histogram maximum FHR": hist_max,
+                    "Histogram peaks": hist_peaks,
+                    "Histogram zeroes": hist_zeroes,
+                    "Histogram mode": hist_mode,
+                    "Histogram mean": hist_mean,
+                    "Histogram median": hist_median,
+                    "Histogram variance": hist_variance,
+                    "Histogram tendency": hist_tendency,
+                },
+            }
 
             st.markdown("<br>", unsafe_allow_html=True)
             r1, r2 = st.columns([1, 1], gap="large")
@@ -1040,6 +1120,161 @@ elif selected == "Fetal Health":
 
         except Exception as e:
             st.error(f"Prediction error: {e}")
+
+    render_prediction_report(
+        "fetal_prediction_report",
+        "Fetal Health Assessment Report",
+        "fetal_assessment_report.csv",
+    )
+
+
+# PAGE: LAB REPORT
+elif selected == "Lab Report":
+    st.markdown('<div class="section-header">🧪 Prenatal Lab Report</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-sub">Record prenatal laboratory results and generate a shareable report. '
+        'Use the reference ranges and flags supplied by the performing laboratory.</div>',
+        unsafe_allow_html=True
+    )
+
+    lab_tests = [
+        ("Hemoglobin", "g/dL"),
+        ("Hematocrit", "%"),
+        ("White blood cell count", "10⁹/L"),
+        ("Platelet count", "10⁹/L"),
+        ("Blood group and Rh", ""),
+        ("Fasting blood glucose", "mg/dL"),
+        ("Urine protein", ""),
+        ("HIV screening", ""),
+        ("Hepatitis B surface antigen (HBsAg)", ""),
+        ("Syphilis screening", ""),
+    ]
+    lab_statuses = [
+        "Not stated by lab",
+        "Within range",
+        "Below range",
+        "Above range",
+        "Flagged by lab",
+    ]
+
+    with st.form("lab_report_form"):
+        st.markdown('<div class="input-group-label">👤 Patient & Sample Details</div>', unsafe_allow_html=True)
+        patient_col1, patient_col2, patient_col3 = st.columns(3, gap="medium")
+        patient_name = patient_col1.text_input("Patient name")
+        patient_id = patient_col2.text_input("Patient / record ID")
+        patient_age = patient_col3.number_input("Age (years)", min_value=10, max_value=70, value=30, step=1)
+
+        sample_col1, sample_col2, sample_col3 = st.columns(3, gap="medium")
+        gestational_weeks = sample_col1.number_input(
+            "Gestational age (weeks)", min_value=0, max_value=42, value=0, step=1
+        )
+        collection_date = sample_col2.date_input("Collection date")
+        requested_by = sample_col3.text_input("Requested by / clinician")
+
+        st.markdown("---")
+        st.markdown('<div class="input-group-label">🧬 Prenatal Laboratory Results</div>', unsafe_allow_html=True)
+        test_header = st.columns([2.2, 1.5, 1, 1.5, 1.5], gap="small")
+        for column, heading in zip(
+            test_header,
+            ["Test", "Result", "Units", "Lab reference range", "Status from lab"],
+        ):
+            column.markdown(f"**{heading}**")
+
+        entered_tests = []
+        for index, (test_name, default_unit) in enumerate(lab_tests):
+            test_col, result_col, unit_col, range_col, status_col = st.columns(
+                [2.2, 1.5, 1, 1.5, 1.5], gap="small"
+            )
+            test_col.markdown(f"<div style='padding-top:10px'>{test_name}</div>", unsafe_allow_html=True)
+            result = result_col.text_input(
+                f"{test_name} result", key=f"lab_result_{index}", label_visibility="collapsed",
+                placeholder="Enter result"
+            )
+            units = unit_col.text_input(
+                f"{test_name} units", value=default_unit, key=f"lab_units_{index}",
+                label_visibility="collapsed", placeholder="Units"
+            )
+            reference_range = range_col.text_input(
+                f"{test_name} reference range", key=f"lab_range_{index}",
+                label_visibility="collapsed", placeholder="Optional"
+            )
+            status = status_col.selectbox(
+                f"{test_name} status", lab_statuses, key=f"lab_status_{index}",
+                label_visibility="collapsed"
+            )
+            if result.strip():
+                entered_tests.append({
+                    "Test": test_name,
+                    "Result": result.strip(),
+                    "Units": units.strip(),
+                    "Reference range": reference_range.strip(),
+                    "Status": status,
+                })
+
+        notes = st.text_area("Additional notes", placeholder="Optional notes from the laboratory or clinician")
+        generate_report = st.form_submit_button("📄 Generate Lab Report", use_container_width=True)
+
+    if generate_report:
+        if not entered_tests:
+            st.error("Enter at least one test result to generate a report.")
+        else:
+            st.session_state["lab_report"] = {
+                "patient_name": patient_name.strip() or "Not provided",
+                "patient_id": patient_id.strip() or "Not provided",
+                "patient_age": patient_age,
+                "gestational_weeks": gestational_weeks,
+                "collection_date": collection_date.isoformat(),
+                "requested_by": requested_by.strip() or "Not provided",
+                "tests": entered_tests,
+                "notes": notes.strip(),
+            }
+
+    report = st.session_state.get("lab_report")
+    if report:
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown('<div class="section-header" style="font-size:23px;">📋 Generated Lab Report</div>', unsafe_allow_html=True)
+        metadata_col1, metadata_col2, metadata_col3 = st.columns(3, gap="medium")
+        metadata_col1.markdown(
+            f"**Patient:** {report['patient_name']}  \n"
+            f"**Record ID:** {report['patient_id']}  \n"
+            f"**Age:** {report['patient_age']} years"
+        )
+        metadata_col2.markdown(
+            f"**Gestational age:** {report['gestational_weeks']} weeks  \n"
+            f"**Collection date:** {report['collection_date']}"
+        )
+        metadata_col3.markdown(f"**Requested by:** {report['requested_by']}")
+
+        st.dataframe(pd.DataFrame(report["tests"]), use_container_width=True, hide_index=True)
+        if report["notes"]:
+            st.markdown(f"**Additional notes:** {report['notes']}")
+
+        export_rows = [
+            {
+                "Patient": report["patient_name"],
+                "Patient / record ID": report["patient_id"],
+                "Age (years)": report["patient_age"],
+                "Gestational age (weeks)": report["gestational_weeks"],
+                "Collection date": report["collection_date"],
+                "Requested by": report["requested_by"],
+                **test,
+                "Additional notes": report["notes"],
+            }
+            for test in report["tests"]
+        ]
+        st.download_button(
+            "⬇️ Download report as CSV",
+            data=pd.DataFrame(export_rows).to_csv(index=False),
+            file_name=f"prenatal_lab_report_{report['collection_date']}.csv",
+            mime="text/csv",
+            use_container_width=True,
+        )
+        st.markdown("""
+        <div class="disclaimer">
+            ⚠️ This report records results and reference information entered by the user.
+            It does not interpret laboratory findings or provide a diagnosis. Confirm results and
+            clinical significance with the laboratory and a qualified healthcare professional.
+        </div>""", unsafe_allow_html=True)
 
 
 # PAGE: DASHBOARD
