@@ -1,3 +1,7 @@
+from datetime import datetime
+from io import BytesIO
+import textwrap
+
 import streamlit as st
 from streamlit_option_menu import option_menu
 import pickle
@@ -6,8 +10,82 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import shap
+from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib.figure import Figure
+from matplotlib.lines import Line2D
 
 warnings.filterwarnings("ignore")
+
+
+def create_pdf_report(title, sections):
+    buffer = BytesIO()
+    report_pages = []
+    for section_title, rows in sections:
+        report_pages.append(("heading", section_title, ""))
+        report_pages.extend(("row", str(label), str(value)) for label, value in rows)
+
+    with PdfPages(buffer) as pdf:
+        page_items = []
+        used_lines = 0.0
+        for item in report_pages:
+            if item[0] == "heading":
+                line_count = 2.4
+            else:
+                wrapped_lines = max(
+                    len(textwrap.wrap(item[2], width=68)) or 1,
+                    len(textwrap.wrap(item[1], width=30)) or 1,
+                )
+                line_count = wrapped_lines * 1.35
+            if page_items and used_lines + line_count > 34:
+                _save_pdf_page(pdf, title, page_items)
+                page_items = []
+                used_lines = 0.0
+            page_items.append(item)
+            used_lines += line_count
+        if page_items:
+            _save_pdf_page(pdf, title, page_items)
+
+    return buffer.getvalue()
+
+
+def _save_pdf_page(pdf, title, items):
+    figure = Figure(figsize=(8.27, 11.69), facecolor="white")
+    figure.text(0.08, 0.95, title, fontsize=19, weight="bold", color="#9D174D")
+    figure.text(
+        0.08,
+        0.925,
+        f"Generated {datetime.now().astimezone().strftime('%Y-%m-%d %H:%M %Z')}",
+        fontsize=8,
+        color="#6B7280",
+    )
+    y = 0.89
+    for item_type, label, value in items:
+        if item_type == "heading":
+            y -= 0.026
+            figure.text(0.08, y, label, fontsize=11, weight="bold", color="#9D174D")
+            y -= 0.023
+            continue
+
+        label_lines = textwrap.wrap(label, width=30) or [""]
+        value_lines = textwrap.wrap(value, width=68) or [""]
+        row_lines = max(len(label_lines), len(value_lines))
+        figure.text(0.09, y, "\n".join(label_lines), fontsize=8.5, color="#374151", va="top")
+        figure.text(0.39, y, "\n".join(value_lines), fontsize=8.5, color="#111827", va="top")
+        y -= 0.022 * row_lines
+        figure.add_artist(
+            Line2D([0.08, 0.92], [y + 0.008, y + 0.008], transform=figure.transFigure,
+                   color="#F3D5E0", linewidth=0.5)
+        )
+        y -= 0.008
+
+    figure.text(
+        0.08,
+        0.035,
+        "For clinical decision support only. Review all results with a qualified healthcare professional.",
+        fontsize=7,
+        color="#6B7280",
+    )
+    pdf.savefig(figure, bbox_inches="tight")
     
 # PAGE CONFIG
 st.set_page_config(
@@ -486,13 +564,28 @@ def render_prediction_report(report_key, report_title, file_name):
         "Model confidence (%)": round(report["confidence"], 2),
         **report["measurements"],
     }
-    st.download_button(
-        "⬇️ Download assessment report as CSV",
+    csv_col, pdf_col = st.columns(2, gap="small")
+    csv_col.download_button(
+        "⬇️ Download CSV",
         data=pd.DataFrame([export]).to_csv(index=False),
         file_name=file_name,
         mime="text/csv",
         use_container_width=True,
-        key=f"{report_key}_download",
+        key=f"{report_key}_csv_download",
+    )
+    pdf_col.download_button(
+        "📄 Download detailed PDF",
+        data=create_pdf_report(report_title, [
+            ("Assessment summary", [
+                ("Classification", report["classification"]),
+                ("Model confidence", f'{report["confidence"]:.2f}%'),
+            ]),
+            ("Measurements", list(report["measurements"].items())),
+        ]),
+        file_name=file_name.rsplit(".", 1)[0] + ".pdf",
+        mime="application/pdf",
+        use_container_width=True,
+        key=f"{report_key}_pdf_download",
     )
 
 
@@ -1262,12 +1355,42 @@ elif selected == "Lab Report":
             }
             for test in report["tests"]
         ]
-        st.download_button(
-            "⬇️ Download report as CSV",
+        csv_col, pdf_col = st.columns(2, gap="small")
+        csv_col.download_button(
+            "⬇️ Download CSV",
             data=pd.DataFrame(export_rows).to_csv(index=False),
             file_name=f"prenatal_lab_report_{report['collection_date']}.csv",
             mime="text/csv",
             use_container_width=True,
+            key="lab_report_csv_download",
+        )
+        pdf_col.download_button(
+            "📄 Download detailed PDF",
+            data=create_pdf_report("Prenatal Lab Report", [
+                ("Patient and sample details", [
+                    ("Patient", report["patient_name"]),
+                    ("Patient / record ID", report["patient_id"]),
+                    ("Age", f"{report['patient_age']} years"),
+                    ("Gestational age", f"{report['gestational_weeks']} weeks"),
+                    ("Collection date", report["collection_date"]),
+                    ("Requested by", report["requested_by"]),
+                ]),
+                ("Laboratory results", [
+                    (
+                        test["Test"],
+                        " | ".join(
+                            f"{field}: {test[field]}"
+                            for field in ("Result", "Units", "Reference range", "Status")
+                        ),
+                    )
+                    for test in report["tests"]
+                ]),
+                ("Additional notes", [("Notes", report["notes"] or "None provided")]),
+            ]),
+            file_name=f"prenatal_lab_report_{report['collection_date']}.pdf",
+            mime="application/pdf",
+            use_container_width=True,
+            key="lab_report_pdf_download",
         )
         st.markdown("""
         <div class="disclaimer">
